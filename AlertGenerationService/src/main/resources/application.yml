@@ -1,0 +1,38 @@
+server:
+  port: 8083
+  
+spring:
+  application:
+    name:  ALERTGENERATION-SERVICE
+  datasource:
+    username: root
+    password: examly
+    url: jdbc:mysql://localhost:3306/hack3
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+
+  instance:
+    prefer-ip-address: true
+    
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      recommendationBreaker:
+        register-health-indicator: true
+        event-consumer-buffer-size: 10
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 6s
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10
+    
