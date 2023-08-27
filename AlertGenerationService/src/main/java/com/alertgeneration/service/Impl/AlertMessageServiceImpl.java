@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.alertgeneration.model.AlertMessage;
 import com.alertgeneration.repository.AlertMessageRepository;
 import com.alertgeneration.service.AlertMessageService;
+import java.util.List;
 
 @Service
 public class AlertMessageServiceImpl implements AlertMessageService {

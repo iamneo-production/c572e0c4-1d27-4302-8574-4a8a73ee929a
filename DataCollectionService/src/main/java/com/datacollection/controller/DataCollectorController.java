@@ -97,6 +97,7 @@ public class DataCollectorController {
 
 		patientDTO.setPatientId(id);
 		patientDTO.setPatientName(dataCollectionService.getPatientById(id).getName());
+		
 
 		//we care calling alert generation miroservice
 		AlertMessage genrateAlert = alertGenrationService.genrateAlert(patientDTO);
