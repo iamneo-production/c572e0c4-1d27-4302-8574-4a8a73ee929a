@@ -1,5 +1,7 @@
 package com.alertgeneration.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alertgeneration.externalservices.AlertNotification;
 import com.alertgeneration.externalservices.ConfigurabilityService;
 import com.alertgeneration.model.AlertMessage;
 import com.alertgeneration.model.CircuitDemo;
+import com.alertgeneration.model.EmailRequestDto;
+import com.alertgeneration.model.EmailResponseDto;
 import com.alertgeneration.model.PatientDTO;
 import com.alertgeneration.model.VitalSignConfigurability;
 import com.alertgeneration.service.AlertMessageService;
@@ -26,10 +31,13 @@ import lombok.extern.slf4j.Slf4j;
 public class alertGenrationController {
 
 	@Autowired
-	ConfigurabilityService configurabilityService;
+	private ConfigurabilityService configurabilityService;
 
 	@Autowired
-	AlertMessageService alertMessageService;
+	private AlertMessageService alertMessageService;
+
+	@Autowired
+	private AlertNotification alertNotification;
 
 	// testing feign client for the specific patient
 	@GetMapping("/config/{patientId}")
@@ -91,6 +99,15 @@ public class alertGenrationController {
 			alertMessage.setMessage(resultMessage.toString());
 			alertMessage.setPatientName(patientDTO.getPatientName());
 
+			
+			//sending alert to email by calling alert service
+			EmailRequestDto emailDto = new EmailRequestDto();
+			emailDto.setId(patientDTO.getPatientId());
+			emailDto.setPatientId(patientDTO.getPatientId());
+			emailDto.setPatientName(patientDTO.getPatientName());
+			emailDto.setMessage(resultMessage.toString());
+			alertNotification.sendAlert(emailDto);
+
 			return new ResponseEntity<>(alertMessageService.genrateAlert(alertMessage), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(
@@ -107,6 +124,12 @@ public class alertGenrationController {
 	@GetMapping("/all/alert")
 	public ResponseEntity<List<AlertMessage>> allalerts() {
 		return new ResponseEntity<>(alertMessageService.allAlerts(), HttpStatus.OK);
+	}
+
+	@PostMapping("/sendAlert")
+	public ResponseEntity<EmailResponseDto> sendAlert(@RequestBody EmailRequestDto emailDto) {
+		log.info("email sended");
+		return new ResponseEntity<>(alertNotification.sendAlert(emailDto), HttpStatus.OK);
 	}
 
 }
