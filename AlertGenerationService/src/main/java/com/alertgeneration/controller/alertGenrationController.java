@@ -103,4 +103,10 @@ public class alertGenrationController {
 		return new ResponseEntity<>(circuitDemo, HttpStatus.OK);
 	}
 
+	// all alert
+	@GetMapping("/all/alert")
+	public ResponseEntity<List<AlertMessage>> allalerts() {
+		return new ResponseEntity<>(alertMessageService.allAlerts(), HttpStatus.OK);
+	}
+
 }

@@ -6,4 +6,6 @@ public interface AlertMessageService {
 
 	AlertMessage genrateAlert(AlertMessage alertMessage);
 
+	List<AlertMessage> allAlerts();
+
 }

@@ -18,4 +18,9 @@ public class AlertMessageServiceImpl implements AlertMessageService {
 		return alertMessageRepository.save(alertMessage);
 	}
 
+	@Override
+	public List<AlertMessage> allAlerts() {
+		return alertMessageRepository.findAll();
+	}
+
 }
