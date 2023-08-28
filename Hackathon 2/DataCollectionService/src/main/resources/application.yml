@@ -1,0 +1,42 @@
+server:
+  port: 8084
+  
+spring:
+  application:
+    name:  DATACOLLECTION-SERVICE
+  datasource:
+    username: root
+    password: admin
+    url: jdbc:mysql://localhost:3306/hack2
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    prefer-ip-address: true
+    
+resilience4j:
+  circuitbreaker:
+    instances:
+      recommendationBreaker:
+        register-health-indicator: true
+        event-consumer-buffer-size: 10
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 6s
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10
+    
