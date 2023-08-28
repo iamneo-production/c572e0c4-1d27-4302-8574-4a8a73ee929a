@@ -1,0 +1,7 @@
+com/configurability/service/impl/ConfigurabilityServiceImpl.class
+com/configurability/ConfigurabilityServiceApplication.class
+com/configurability/model/VitalSignConfigurability.class
+com/configurability/model/VitalSignConfigurability$VitalSignConfigurabilityBuilder.class
+com/configurability/controller/ConfigurabilityController.class
+com/configurability/repository/VitalSIgnConfigurabilityRepository.class
+com/configurability/service/ConfigurabilityService.class

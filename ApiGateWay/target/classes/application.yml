@@ -1,0 +1,53 @@
+server:
+  port: 8087
+  
+spring:
+  application:
+    name: API-GATEWAY
+    
+  cloud:
+    gateway:
+      routes:
+        - id: USER-REGISTRATION-SERVICE
+          uri: lb://USER-REGISTRATION-SERVICE
+          predicates:
+            - Path=/auth/**, /user/register/patient
+
+        - id: DATACOLLECTION-SERVICE
+          uri: lb://DATACOLLECTION-SERVICE
+          predicates:
+            - Path=/data/**
+
+        - id: ALERTGENERATION-SERVICE
+          uri: lb://ALERTGENERATION-SERVICE
+          predicates:
+            - Path=/generate/**
+
+        - id: CONFIGURABILITY-SERVICE
+          uri: lb://CONFIGURABILITY-SERVICE
+          predicates:
+            - Path=/config/**
+
+        - id: DATAVISUALIZE-SERVICE
+          uri: lb://DATAVISUALIZE-SERVICE
+          predicates:
+            - Path=/testreport/**
+            
+        - id: ALERT-SERVICE
+          uri: lb://ALERT-SERVICE
+          predicates:
+            - Path=/notification/**
+       
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+  instance:
+    prefer-ip-address: true
+    
+
+

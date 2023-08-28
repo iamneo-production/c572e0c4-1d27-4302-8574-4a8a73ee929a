@@ -1,0 +1,29 @@
+
+server:
+  port: 8099
+  
+spring:
+  application:
+    name:  ALERT-SERVICE
+  datasource:
+    username: root
+    password: examly
+    url: jdbc:mysql://localhost:3306/hack5
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+
+  instance:
+    prefer-ip-address: true
+    
+mail:
+  id: rotatedsortedarray@gmail.com
+  password: xoparjllqtizsyqz
+    

@@ -1,0 +1,10 @@
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/controller/AlertGenrationController.java
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/service/NotificationServiceImpl.java
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/data/PatientMockDB.java
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/AlertMicroserviceApplication.java
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/model/AlertMessage.java
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/externalservice/AlertGenrationservice.java
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/model/EmailRequestDto.java
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/service/NotificationService.java
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/config/MailConfig.java
+/home/coder/project/workspace/AlertMicroservice/src/main/java/com/alertmicro/model/EmailResponseDto.java
